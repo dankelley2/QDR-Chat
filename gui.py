@@ -68,8 +68,6 @@ class MainWindow(QMainWindow):
 
         self.pool = QThreadPool()
         self.oldPos = self.pos()
-        pywinstyles.change_header_color(self, color="#202123")
-        pywinstyles.change_border_color(self, color="#515473")
 
         self.setCentralWidget(self.main_widget)
 
@@ -171,6 +169,10 @@ class MainWindow(QMainWindow):
         self.chat_widget.scroll_to_bottom()
 
     def get_history(self):
+        # check mac and windows for history folder
+        # create it if it doesn't exist
+        if 'history' not in os.listdir():
+            os.mkdir('history')
         if 'history.csv' not in os.listdir('history'):
             pathlib.Path("history/history.csv").touch()
         with open('history/history.csv', 'r') as csvfile:

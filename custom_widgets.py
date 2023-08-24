@@ -21,7 +21,6 @@ from PyQt6.QtSvgWidgets import QSvgWidget
 from PyQt6.QtCore import Qt, QTimer, pyqtSlot, pyqtSignal, QObject, QRect, QPropertyAnimation
 from PyQt6.QtGui import QColor, QIcon, QFont, QPixmap, QPainter
 from python_syntax_highlighting import PythonHighlighter
-import pywinstyles
 import re
 import csv
 import os
@@ -317,8 +316,6 @@ class Dialog(QDialog):
         self.setWindowIcon(QIcon("icons/main_window.svg"))
 
     def exec(self) -> int:
-        pywinstyles.change_header_color(self, color="#202123")
-        pywinstyles.change_border_color(self, color="#515473")
         return super().exec()
 
 
@@ -416,7 +413,7 @@ class ErrorDialog(Dialog):
         if message == "Incorrect API key":
             self.label.setText(
                 "<b>Either no or incorrect API key provided</b></br>"
-                "<p>Set the key in the options menu in the top right corner.</p>"
+                "<p>Set the key in the options menu in the top left corner.</p>"
             )
         else:
             self.label.setText("<b>Unspecified API Error</b>"
